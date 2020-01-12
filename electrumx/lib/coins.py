@@ -2690,6 +2690,29 @@ class PivxTestnet(Pivx):
     TX_PER_BLOCK = 4
     RPC_PORT = 51472
     ZEROCOIN_START_HEIGHT = 201564
+    
+    
+class PricecoinX(Coin):
+    NAME = "PricecoinX"
+    SHORTNAME = "PRCX"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("0488b21e") //this value needs to be changed still
+    XPRV_VERBYTES = bytes.fromhex("0488ade4") //this value needs to be changed still
+    P2PKH_VERBYTE = bytes.fromhex("30")//this value needs to be changed still
+    P2SH_VERBYTES = [bytes.fromhex("32"), bytes.fromhex("05")]//this value needs to be changed still
+    WIF_BYTE = bytes.fromhex("b0")
+    GENESIS_HASH = ('e96fe042f9a306b109b7276c47488fce'
+                    'afcbd98a4456676bcf42307087af30f2')
+    DESERIALIZER = lib_tx.DeserializerSegWit
+    TX_COUNT = 237637
+    TX_COUNT_HEIGHT = 25000
+    TX_PER_BLOCK = 10
+    
+    @classmethod
+    def header_hash(cls, header):
+      import allium_hash
+      return allium_hash.getPoWHash(header)
+    
 
 
 class Bitg(Coin):
